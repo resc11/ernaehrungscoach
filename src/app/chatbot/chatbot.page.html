@@ -1,0 +1,20 @@
+<div class="chatbot-container">
+  <div class="chat-history">
+    <div *ngFor="let msg of messages" [ngClass]="{'user-msg': msg.from === 'user', 'bot-msg': msg.from === 'bot'}">
+      {{ msg.text }}
+    </div>
+  </div>
+  <form (submit)="sendMessage()" class="chat-input-row">
+    <ion-item lines="none" class="chat-input">
+      <ion-input
+        [(ngModel)]="currentMessage"
+        name="chatInput"
+        placeholder="Nachricht an den Coach..."
+        required
+        (keyup.enter)="sendMessage()"
+        autocomplete="off"
+      ></ion-input>
+      <ion-button type="submit">Absenden</ion-button>
+    </ion-item>
+  </form>
+</div>

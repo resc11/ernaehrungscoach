@@ -1,0 +1,7 @@
+{
+  "name": "nutricoach",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

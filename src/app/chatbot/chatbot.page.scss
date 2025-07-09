@@ -7,21 +7,21 @@ ion-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Damit alles vertikal mittig ist */
+  height: 100vh;
 }
 
 .chatbot-container {
   display: flex;
   flex-direction: column;
-  height: 90vh;                // Optional: 90% vom Bildschirm für Chat (passe nach Wunsch an)
-  max-width: 1100px;           // Deine Wunschbreite (z. B. 1100px)
-  min-width: 350px;            // Für kleinere Bildschirme
+  height: 90vh;
+  max-width: 1100px;
+  min-width: 350px;
   width: 100%;
   margin: 0 auto;
-  background: #ccc7c7;
+  background: #222233;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(30,30,30,0.08);
-  padding: 0 0 0 0;
+  padding: 0;
   overflow: hidden;
   margin-top: 20px;
 }
@@ -51,7 +51,7 @@ ion-content {
   align-self: flex-start;
   background: #e9ecef;
   color: #222;
-  padding: 14px 22px;
+  padding: 5px 22px;
   border-radius: 18px 18px 18px 4px;
   max-width: 90%;
   word-break: break-word;
@@ -63,15 +63,15 @@ ion-content {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0 32px 32px 32px;       // Gleicher horizontaler Abstand wie im Chat
-  background: #ccc7c7;
+  padding: 0 32px 32px 32px;
+  background: #222233;
   box-sizing: border-box;
 }
 
 ion-item.chat-input {
   flex: 1;
   --min-height: 52px;
-  --background: #f2f2f2;           // Heller Hintergrund für Input
+  --background: #f2f2f2;
   margin: 0;
   border-radius: 12px;
   padding: 0;
@@ -91,7 +91,7 @@ ion-input {
   font-size: 1.1rem;
   background: transparent;
   color: #232323;
-  --placeholder-color: #999;
+  --placeholder-color: #575454;
 }
 
 ion-button[type="submit"] {
@@ -106,6 +106,7 @@ ion-button[type="submit"] {
   text-transform: none;
 }
 
+/* Responsive Anpassungen */
 @media (max-width: 900px) {
   .chatbot-container {
     max-width: 98vw;
@@ -116,7 +117,6 @@ ion-button[type="submit"] {
     padding-right: 10px;
   }
 }
-
 @media (max-width: 500px) {
   .chatbot-container {
     height: 100vh;

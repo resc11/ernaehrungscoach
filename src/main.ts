@@ -5,10 +5,13 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
+import { provideMarkdown } from 'ngx-markdown';
+
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
+    provideMarkdown(), // <--- Komma hier!
     provideRouter(routes, withPreloading(PreloadAllModules)),
   ],
 });

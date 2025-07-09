@@ -1,0 +1,20 @@
+.ernaehrungsplaene-img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.ernaehrungsplaene-img-container img {
+  max-width: 90vw;
+  max-height: 60vh;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.info-text {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+}

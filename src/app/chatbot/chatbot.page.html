@@ -1,7 +1,12 @@
 <div class="chatbot-container">
-  <div class="chat-history">
+  <div class="chat-history" #chatHistory>
     <div *ngFor="let msg of messages" [ngClass]="{'user-msg': msg.from === 'user', 'bot-msg': msg.from === 'bot'}">
-      {{ msg.text }}
+      <ng-container *ngIf="msg.from === 'bot'; else userTpl">
+        <markdown [data]="msg.text"></markdown>
+      </ng-container>
+      <ng-template #userTpl>
+        <div style="white-space: pre-line">{{ msg.text }}</div>
+      </ng-template>
     </div>
   </div>
   <form (submit)="sendMessage()" class="chat-input-row">

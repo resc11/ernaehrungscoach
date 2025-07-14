@@ -1,25 +1,52 @@
-<div class="chatbot-container">
-  <div class="chat-history" #chatHistory>
-    <div *ngFor="let msg of messages" [ngClass]="{'user-msg': msg.from === 'user', 'bot-msg': msg.from === 'bot'}">
-      <ng-container *ngIf="msg.from === 'bot'; else userTpl">
-        <markdown [data]="msg.text"></markdown>
+<div class="chatbot-layout">
+  <div class="chatbot-container">
+    <div class="chat-history" #chatHistory>
+      <!-- Willkommensnachricht (erste Bot-Nachricht) -->
+      <div *ngIf="messages.length && messages[0].from === 'bot'" class="welcome-message">
+        <ion-icon name="nutrition-outline"></ion-icon>
+        <div>
+          <div class="welcome-headline">Willkommen beim Ernährungscoach!</div>
+          <div>
+            Ich helfe dir Mahlzeiten zu erfassen, Ziele zu setzen und deinen Fortschritt zu verfolgen.<br>
+            <span class="welcome-subline">Was kann ich für dich tun?</span>
+          </div>
+        </div>
+      </div>
+      <!-- Restliche Chatnachrichten, ab Index 1 -->
+      <ng-container *ngFor="let msg of messages; let i = index">
+        <div *ngIf="!(i === 0 && msg.from === 'bot')" [ngClass]="{'user-msg': msg.from === 'user', 'bot-msg': msg.from === 'bot'}">
+          <ng-container *ngIf="msg.from === 'bot'; else userTpl">
+            <markdown [data]="msg.text"></markdown>
+          </ng-container>
+          <ng-template #userTpl>
+            <div style="white-space: pre-line">{{ msg.text }}</div>
+          </ng-template>
+        </div>
       </ng-container>
-      <ng-template #userTpl>
-        <div style="white-space: pre-line">{{ msg.text }}</div>
-      </ng-template>
     </div>
+
+    <!-- Intents horizontal über dem Eingabefeld -->
+    <div class="intents-row" *ngIf="intents && intents.length">
+      <div class="intent-btn-small" *ngFor="let intent of intents" (click)="onIntent(intent)">
+        <ion-icon [name]="intent.icon"></ion-icon>
+        <span>{{ intent.label }}</span>
+      </div>
+    </div>
+
+    <form (submit)="sendMessage()" class="chat-input-row">
+      <ion-item lines="none" class="chat-input">
+        <ion-input
+          [(ngModel)]="currentMessage"
+          name="chatInput"
+          placeholder="Nachricht an den Coach..."
+          required
+          (keyup.enter)="sendMessage()"
+          autocomplete="off"
+        ></ion-input>
+        <ion-button type="submit" class="send-button">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </form>
   </div>
-  <form (submit)="sendMessage()" class="chat-input-row">
-    <ion-item lines="none" class="chat-input">
-      <ion-input
-        [(ngModel)]="currentMessage"
-        name="chatInput"
-        placeholder="Nachricht an den Coach..."
-        required
-        (keyup.enter)="sendMessage()"
-        autocomplete="off"
-      ></ion-input>
-      <ion-button type="submit">Absenden</ion-button>
-    </ion-item>
-  </form>
 </div>

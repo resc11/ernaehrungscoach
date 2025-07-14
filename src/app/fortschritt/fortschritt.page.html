@@ -1,17 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Fortschritt</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Fortschritt</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div class="fortschritt-img-container">
-    <img src="assets/fortschritt_demo.png" alt="Fortschritt - Vorschau" />
-    <p class="info-text">Hier wird später dein Fortschritt grafisch angezeigt.</p>
+<ion-content class="ion-padding">
+  <h2 class="headline">Dein Fortschritt der letzten 7 Tage</h2>
+  <div class="chart-row">
+    <div class="chart-card">
+      <canvas baseChart
+        [data]="caloriesChartData"
+        [type]="'line'"
+        [options]="caloriesChartOptions">
+      </canvas>
+    </div>
+    <div class="chart-card">
+      <canvas baseChart
+        [data]="macroChartData"
+        [type]="'bar'"
+        [options]="macroChartOptions">
+      </canvas>
+    </div>
+    <div class="chart-card">
+      <canvas baseChart
+        [data]="waterChartData"
+        [type]="'line'"
+        [options]="waterChartOptions">
+      </canvas>
+    </div>
   </div>
 </ion-content>

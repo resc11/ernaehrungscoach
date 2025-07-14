@@ -1,17 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Ernährungspläne</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+<ng-container *ngIf="!loading && plan && plan.length > 0">
+  <div *ngFor="let day of plan">
+    <h3>Tag {{ day.tag }}</h3>
+    <ion-card *ngFor="let mealKey of ['fruehstueck', 'snack', 'mittagessen', 'abendessen']">
+      <ion-card-header>
+        <ion-card-title>{{ mealNames[mealKey] }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngIf="day[mealKey]">
+        <p><b>Gericht:</b> {{ day[mealKey].gericht }}</p>
+        <p><b>Zutaten:</b> {{ zutatenStr(day[mealKey].zutaten) }}</p>
+        <p><b>Zubereitung:</b> {{ day[mealKey].zubereitung }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ng-container>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Ernährungspläne</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!-- Anzeige, wenn Plan leer ist -->
+<ng-container *ngIf="!loading && plan && plan.length === 0">
   <div class="ernaehrungsplaene-img-container">
     <img src="assets/ernaehrungsplaene_demo.png" alt="Ernährungspläne - Vorschau" />
-    <p class="info-text">Hier werden später individuelle Ernährungspläne angezeigt.</p>
+    <p class="info-text">Noch kein Ernährungsplan vorhanden.</p>
   </div>
+</ng-container>
 </ion-content>

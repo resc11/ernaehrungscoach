@@ -12,6 +12,7 @@
           </div>
         </div>
       </div>
+
       <!-- Restliche Chatnachrichten, ab Index 1 -->
       <ng-container *ngFor="let msg of messages; let i = index">
         <div *ngIf="!(i === 0 && msg.from === 'bot')" [ngClass]="{'user-msg': msg.from === 'user', 'bot-msg': msg.from === 'bot'}">
@@ -33,6 +34,7 @@
       </div>
     </div>
 
+    <!-- Eingabefeld für die Nachricht -->
     <form (submit)="sendMessage()" class="chat-input-row">
       <ion-item lines="none" class="chat-input">
         <ion-input

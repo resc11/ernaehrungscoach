@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  { path: 'login', loadChildren: () => import('./login/login.routes').then(m => m.default) },
+
   {
     path: 'chatbot',
     loadChildren: () => import('./chatbot/chatbot.routes').then(m => m.default)
@@ -17,9 +19,5 @@ export const routes: Routes = [
     path: 'kalender',
     loadChildren: () => import('./kalender/kalender.routes').then(m => m.default)
   },
-  {
-    path: '',
-    redirectTo: '/chatbot',
-    pathMatch: 'full'
-  }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];

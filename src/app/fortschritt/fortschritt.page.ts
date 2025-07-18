@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { MealHistoryService } from '../services/meal-history.service'; // ggf. Pfad anpassen
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fortschritt',
@@ -22,7 +23,15 @@ export class FortschrittPage implements OnInit {
 
   labels: string[] = [];
 
-  constructor(private mealHistoryService: MealHistoryService) {}
+  constructor(
+    private mealHistoryService: MealHistoryService,
+    private router: Router
+  ) {
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit() {
     this.fetchMealHistory();
@@ -54,11 +63,6 @@ export class FortschrittPage implements OnInit {
 
       const water        = history.map(entry => entry.sum.water);
       const waterGoal    = history.map(entry => entry.goal?.water ?? waterGoalDefault);
-
-      // Debug-Check für Zielwerte
-      console.log('proteinGoal', proteinGoal);
-      console.log('carbsGoal', carbsGoal);
-      console.log('fatGoal', fatGoal);
 
       // Kalorien-Chart
       this.caloriesChartData = {

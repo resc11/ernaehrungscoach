@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kalender',
@@ -9,4 +10,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './kalender.page.html',
   styleUrls: ['./kalender.page.scss'],
 })
-export class KalenderPage {}
+export class KalenderPage {
+  constructor(private router: Router) {
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+      this.router.navigate(['/login']);
+    }
+  }
+}

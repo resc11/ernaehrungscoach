@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MealplanService } from '../services/mealplan.services';
 import { IonicModule } from '@ionic/angular';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ernaehrungsplaene',
@@ -23,7 +23,15 @@ export class ErnaehrungsplaenePage implements OnInit {
     snack: 'Snack'
   };
 
-  constructor(private mealplanService: MealplanService) {}
+  constructor(
+    private mealplanService: MealplanService,
+    private router: Router
+  ) {
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit() {
     this.mealplanService.getMealplan().subscribe({

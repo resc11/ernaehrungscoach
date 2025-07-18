@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class MealplanService {
   constructor(private http: HttpClient) {}
-  getMealplan(user_id = 'default'): Observable<any> {
-   return this.http.get('http://localhost:5000/mealplan?user_id=' + user_id);
-  }
+getMealplan(): Observable<any> {
+  const userId = localStorage.getItem('user_id');
+  return this.http.get('http://localhost:5000/mealplan?user_id=' + userId);
 }
+} 

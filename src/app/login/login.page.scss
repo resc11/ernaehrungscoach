@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  /* Optional: zentrieren */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+ion-item {
+  margin-bottom: 12px;
+}

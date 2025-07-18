@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="stacked">Benutzername</ion-label>
+      <ion-input [(ngModel)]="username" name="username" required autocomplete="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Passwort</ion-label>
+      <ion-input [(ngModel)]="password" name="password" required type="password" autocomplete="current-password"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit" [disabled]="isLoading">Login</ion-button>
+    <ion-text color="danger" *ngIf="errorMsg">{{ errorMsg }}</ion-text>
+  </form>
+</ion-content>

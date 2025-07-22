@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npx ng build",
+    "build": "npx ng build --base-href=/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
